@@ -25,6 +25,13 @@ role: "Project Orchestrator & QA Specialist"
 - [ ] **Goal Alignment**: 산출물이 프로젝트 목표(`00_project_charter.md`)에 부합하는가?
 - [ ] **Specific Criteria**: 헌장에 명시된 필수 포함 요소(데이터, 관점)가 누락되지 않았는가?
 
+## 0.5. Global Content Standards (Density & Depth)
+
+- [ ] **Density Check**: 각 주요 세션이 최소 5문장 이상의 심층 내러티브를 포함하고 있는가?
+- [ ] **Data Density**: 장표나 챕터당 최소 3개 이상의 구체적인 정량 데이터 또는 리서치 근거가 포함되었는가?
+- [ ] **Structure Check**: 모든 주장이 '현상(Facts) - 원인(Why) - 시사점(So What)'의 3단 논법을 따르고 있는가?
+- [ ] **Narrative Depth**: 단순 개조식 나열이 아닌, 문맥이 연결된 전문 보고서 형태의 서술인가?
+
 ## Phase 1: Framer (구조화)
 
 - [ ] **MECE**: 문제 정의가 누락이나 중복 없이 구조적인가?

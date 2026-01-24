@@ -34,7 +34,7 @@ role: "Agent Workflow Engineer"
 
 ## 2. Critical Bottlenecks
 
-- [Hunter]: 'Fact Check' 단계 소요시간(45분)이 전체의 60%를 차지함. (Duration Analysis)
+- [Hunter]: 'Fact Check' 단계 소요시간(45분)이 전체의 60%를 차지함. (현재 연도 기준 시계열 분석)
 - [Hunter]: 'Nuanced' 판정이 80%에 달해 재검색 루프가 과도하게 발생함.
 - **Diagnosis**: 초기 검색 쿼리가 너무 광범위했음.
   일반적인 명사로 구성됨)
@@ -42,7 +42,7 @@ role: "Agent Workflow Engineer"
 ## 2. Optimization Proposal
 
 - **Target File**: `strategy-hunter/prompts/1_meta_plan.md`
-- **Solution**: 검색어 생성 시 '통계', '보고서', '2024' 등 구체적 키워드 강제.
+- **Solution**: 검색어 생성 시 '통계', '보고서', '최신 연도' 등 구체적 키워드 강제.
 
 ## 3. Patched Prompt Code (Diff)
 

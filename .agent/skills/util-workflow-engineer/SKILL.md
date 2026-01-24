@@ -13,14 +13,12 @@ tools: [read_file, write_file]
 
 ## Workflow (Retrospective)
 
-1.  **Log Analysis**: `history.md`와 각 단계별 로그 파일(`research/*.md` 등)을 수집하여 분석합니다.
+1.  **Log Analysis**: `history.md`와 각 단계별 로그 파일(`perplexity/*.md` 등)을 수집하여 분석합니다.
 2.  **Performance Estimator**:
     - **Efficiency**: 리서치 루프가 불필요하게 많이 돌지는 않았는가?
-    - **Effectiveness**: 각 스킬이 의도한(SKILL.md에 정의된) 역할을 제대로 수행했는가?
-    - **Bottleneck**: 가장 시간이 오래 걸리거나 결과 품질이 낮았던 구간은 어디인가?
+    - **Effectiveness**: 각 스킬이 의도한 역할을 수행했는가?
 3.  **Optimization Proposal**:
-    - 문제가 발견된 스킬(`strategy-xxx`)의 **프롬프트(`prompts/*.md`) 수정안**을 제안합니다.
-    - 시스템 설정(`config.yaml`)의 파라미터 조정안을 제안합니다.
+    - **Output**: 분석 리포트는 각 프로젝트의 `audit/` 폴더 내에 순번을 매겨 저장합니다. (예: `audit/01_workflow_audit_v1.md`)
 
 ## Output Format
 
