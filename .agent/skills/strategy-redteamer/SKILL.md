@@ -1,7 +1,7 @@
 ---
 name: strategy-redteamer
 description: 전략 수립 3단계(방어 및 연마)를 수행합니다. 레드팀과 블루팀의 3단계 상호 비평 루프(Recursive Debate)를 통해 논리를 극한으로 검증합니다.
-tools: [read_file, write_file, perplexity_ask]
+tools: [read_file, write_file, perplexity_ask, view_file]
 ---
 
 # Phase 3: The Red Teamer (Recursive Debate)
@@ -40,6 +40,11 @@ tools: [read_file, write_file, perplexity_ask]
     - 실행: `.agent/skills/strategy-redteamer/prompts/4_final_polish.md`
     - 입력: `14_debate_round3_synthesis.md` 및 이전 리서치 자료.
     - 결과: **저장**: `15_FINAL_REPORT.md`
+7.  **최종 보고서 확장 (Deep-Dive Expanded)**
+    - **목적**: 작성된 `15_FINAL_REPORT.md`를 바탕으로, 논리와 근거 데이터를 3배 이상 심층적으로 보강합니다.
+    - 실행: `.agent/skills/util-workflow-engineer/prompts/content_expander.md` 활용
+    - 입력: `15_FINAL_REPORT.md`
+    - 결과: **저장**: `15_FINAL_REPORT_expanded.md` (Deep-Dive Version)
 
-7.  **📜 기록 보관 (Util 호출)**: `util-history-keeper` 스킬 실행.
-    - **Target File**: `14_debate_round3_synthesis.md` (논쟁의 결론을 기록하기 위함)
+8.  **📜 기록 보관 (Util 호출)**: `util-history-keeper` 스킬 실행.
+    - **Target File**: `14_debate_round3_synthesis.md` 및 `15_FINAL_REPORT_expanded.md` (논쟁의 결론 및 최종 확장본 기록)

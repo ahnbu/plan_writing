@@ -34,9 +34,34 @@ def parse_markdown(file_path):
         content = f.read()
 
     slides = []
-    slide_blocks = re.split(r'\[슬라이드 \d+\]', content)
+    # Updated Regex to be more flexible with header formats (e.g., [1], [Slide 1], etc.)
+    # It splits primarily by the bracketed number header.
+    slide_blocks = re.split(r'\n\s*\[\s*\d+\s*\]', content)
     
-    for block in slide_blocks:
+    # The first split might be empty or content before the first slide, so check index 0
+    # But usually re.split includes the delimiter if captured, here it consumes it.
+    # Let's try to capture the block content.
+    
+    # Alternative: Find all blocks starting with [N]
+    # We iterate through the file line by line to build blocks safer.
+    
+    lines = content.split('\n')
+    current_block = []
+    
+    for line in lines:
+        if re.search(r'^\s*\[\s*\d+\s*\]', line):
+            if current_block:
+                slides.append('\n'.join(current_block))
+            current_block = [] # Start new block
+        else:
+            current_block.append(line)
+            
+    if current_block:
+        slides.append('\n'.join(current_block)) # Add the last block
+
+    parsed_slides = []
+    
+    for block in slides:
         if not block.strip():
             continue
             
@@ -48,40 +73,43 @@ def parse_markdown(file_path):
             "type": "Standard" 
         }
         
-        lines = block.strip().split('\n')
+        block_lines = block.strip().split('\n')
         parsing_body = False
         
-        for line in lines:
+        for line in block_lines:
             line = line.strip()
             if not line:
                 continue
                 
-            if re.search(r'^- \**슬라이드 제목\**:', line):
+            if re.search(r'-\s*\**슬라이드 제목\**:', line):
                 parsing_body = False
-                title = re.sub(r'^- \**슬라이드 제목\**:', '', line).strip()
+                title = re.sub(r'-\s*\**슬라이드 제목\**:', '', line).strip()
                 slide_data["title"] = clean_text(title)
                 if "표지" in slide_data["title"]:
                     slide_data["type"] = "Title"
                 elif "결론" in slide_data["title"] or "로드맵" in slide_data["title"]:
                     slide_data["type"] = "Conclusion"
                     
-            elif re.search(r'^- \**거버닝 메시지\**:', line):
+            elif re.search(r'-\s*\**거버닝 메시지\**:', line):
                 parsing_body = False
-                msg = re.sub(r'^- \**거버닝 메시지\**:', '', line).strip()
+                msg = re.sub(r'-\s*\**거버닝 메시지\**:', '', line).strip()
                 slide_data["gov_msg"] = clean_text(msg)
-            elif re.search(r'^- \**시각화 계획\**:', line):
+            elif re.search(r'-\s*\**시각화 계획\**:', line):
                 parsing_body = False
-                vis = re.sub(r'^- \**시각화 계획\**:', '', line).strip()
+                vis = re.sub(r'-\s*\**시각화 계획\**:', '', line).strip()
                 slide_data["visual"] = clean_text(vis)
-            elif re.search(r'^- \**본문내용\**:', line):
+            elif re.search(r'-\s*\**본문내용\**:', line):
                 parsing_body = True
-            elif parsing_body and line.startswith('-'):
-                slide_data["body"].append(clean_text(line.replace('-', '', 1).strip()))
+            elif parsing_body and line.replace('-','',1).strip(): # Check if line has content
+                # Handle bullet points
+                cleaned_line = line.lstrip(' -').strip()
+                if cleaned_line:
+                    slide_data["body"].append(clean_text(cleaned_line))
                 
         if slide_data["title"]:
-            slides.append(slide_data)
+            parsed_slides.append(slide_data)
             
-    return slides
+    return parsed_slides
 
 def add_header_footer(slide, slide_num, project_name):
     left = Inches(0.5)

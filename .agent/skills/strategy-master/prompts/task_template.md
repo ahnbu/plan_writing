@@ -47,7 +47,7 @@
 - [ ] **Research (Execution)**: 가설 검증 심층 리서치 수행
       : (활용도구) `util-research-runner`
 - [ ] **Research (Log)**: Perplexity 세부 요청 및 응답 결과 저장
-      : (활용도구) `util-research-runner`, `.agent/skills/util-research-runner/scripts/log_mcp.py`, (산출물) `perplexity/02_Phase2_Search_Log.md`
+      : (활용도구) `util-research-runner`, `.agent/skills/util-research-runner/scripts/log_mcp.py`, (산출물) `perplexity/Phase2_Item*_request.md`, `perplexity/Phase2_Item*_response.md` (총 3개 세트)
 - [ ] **Research (Validation)**: 리서치 결과물 품질 및 분량 검증
       : (활용도구) `.agent/skills/util-research-runner/prompts/output_validator.md`
 - [ ] **Research (Storage)**: 리서치 결과물 저장
@@ -77,6 +77,8 @@
       : (활용도구) `strategy-redteamer/prompts/3_defense_logic.md`, (산출물) `14_debate_round3_synthesis.md` (최소 100줄 이상)
 - [ ] **Final Report**: 최종 전략 보고서 작성
       : (활용도구) `strategy-redteamer/prompts/4_final_polish.md`, (산출물) `15_FINAL_REPORT.md` (최소 200줄 이상)
+- [ ] **Content Expander**: 최종 보고서 심층 보강 (Deep-Dive)
+      : (활용도구) `util-workflow-engineer/prompts/content_expander.md`, (산출물) `15_FINAL_REPORT_expanded.md` (논리 깊이 3배 확장)
 - [ ] **History Keeper**: 3단계 이력 기록
       : (활용도구) `util-history-keeper`, (산출물) `history.md`
 - [ ] **Workflow Audit**: 3단계 진단 수행
@@ -90,6 +92,8 @@
       : (활용도구) `strategy-pt-planner`, (산출물) `17_slide_plan.md` (최소 150줄 이상)
 - [ ] **PPT Creation**: PPTX 파일 생성
       : (활용도구) `strategy-pt-planner`, `.agent/skills/strategy-pt-planner/scripts/generate_pptx_v2.py`, (산출물) `18_Strategy_Deck.pptx`
+- [ ] **PPT Audit**: 생성된 파일 무결성 및 장수 검증
+      : (활용도구) `util-ppt-auditor`, `.agent/skills/util-ppt-auditor/scripts/audit_pptx.py`
 - [ ] **History Keeper**: 4단계 이력 기록
       : (활용도구) `util-history-keeper`, (산출물) `history.md`
 - [ ] **Workflow Audit**: 4단계 진단 수행
