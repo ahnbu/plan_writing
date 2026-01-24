@@ -24,4 +24,10 @@ tools: [read_file, write_file, perplexity_ask]
     - 결과: Issue Tree -> **저장**: `05_issue_tree.md`
 7.  **가설 수립**: `.agent/skills/strategy-framer/prompts/5_ghost_draft.md` 실행
     - 결과: **저장**: `06_ghost_deck_v1.md`
-8.  **📜 기록 보관 (Util 호출)**: `util-history-keeper` 스킬 사용하여 단계 기록
+8.  **Content Expander (Conditional)**:
+    - **품질 검증**: `06_ghost_deck_v1.md` 분량 확인
+    - **실행 조건**: 120줄(목표 80줄의 150%) 미만일 경우에만 실행
+    - **실행**: `.agent/skills/util-workflow-engineer/prompts/content_expander.md`
+    - **기준 충족 시**: ⏭️ 생략하고 다음 단계로 (충분히 깊이 있음)
+9.  **📋 Task Progress Update (Mandatory)**: `task.md` 파일을 열어 Phase 1에서 완료한 모든 항목의 체크박스를 `[ ]` → `[✅]`로 변경하고, Phase 1 헤더를 `[ ]` → `[✅ Done]`으로 업데이트하십시오.
+10. **📜 기록 보관 (Util 호출)**: `util-history-keeper` 스킬 사용하여 단계 기록

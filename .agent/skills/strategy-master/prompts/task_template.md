@@ -17,10 +17,9 @@
 
 - [ ] **Research Design**: 리서치 블루프린트 작성
       : (활용도구) `strategy-framer/prompts/1_research_design.md`, (산출물) `01_research_blueprint.md` (최소 40줄 이상)
-- [ ] **Research (Execution)**: 시장 현황 리서치 수행
-      : (활용도구) `util-research-runner`
-- [ ] **Research (Log)**: Perplexity 세부 요청 및 응답 결과 저장
-      : (활용도구) `util-research-runner`, `.agent/skills/util-research-runner/scripts/log_mcp.py`, (산출물) `perplexity/01_Phase1_Search_Log.md`
+- [ ] **Research (Execution & Auto-Logging)**: 시장 현황 리서치 수행 및 자동 로깅
+      : (활용도구) `util-research-runner/prompts/research_with_logging.md`
+      : (산출물) `perplexity/{Phase}_Item*_request.md`, `perplexity/{Phase}_Item*_response.md` (자동 생성)
 - [ ] **Research (Validation)**: 리서치 결과물 품질 및 분량 검증
       : (활용도구) `.agent/skills/util-research-runner/prompts/output_validator.md`
 - [ ] **Research (Storage)**: 리서치 결과물 저장
@@ -33,8 +32,10 @@
       : (활용도구) `strategy-framer/prompts/4_issue_tree.md`, (산출물) `05_issue_tree.md` (최소 60줄 이상)
 - [ ] **Ghost Deck v1**: 초기 가설 수립
       : (활용도구) `strategy-framer/prompts/5_ghost_draft.md`, (산출물) `06_ghost_deck_v1.md` (최소 80줄 이상)
-- [ ] **Content Expander**: 내러티브 확장 및 논리 보강
+- [ ] **Content Expander (Optional)**: 내러티브 확장 및 논리 보강
       : (활용도구) `util-workflow-engineer/prompts/content_expander.md` (논리 깊이 3배 확장)
+      : **실행 조건**: `06_ghost_deck_v1.md` 분량이 120줄 미만일 경우에만 실행
+      : **충족 시**: ⏭️ 생략 (이미 충분히 깊이 있음)
 - [ ] **History Keeper**: 1단계 이력 기록
       : (활용도구) `util-history-keeper`, (산출물) `history.md`
 - [ ] **Workflow Audit**: 1단계 진단 수행
@@ -44,10 +45,9 @@
 
 - [ ] **Verify Design**: 검증 리서치 계획 수립
       : (활용도구) `strategy-hunter/prompts/1_meta_plan.md`, (산출물) `07_verification_plan.md` (최소 40줄 이상)
-- [ ] **Research (Execution)**: 가설 검증 심층 리서치 수행
-      : (활용도구) `util-research-runner`
-- [ ] **Research (Log)**: Perplexity 세부 요청 및 응답 결과 저장
-      : (활용도구) `util-research-runner`, `.agent/skills/util-research-runner/scripts/log_mcp.py`, (산출물) `perplexity/Phase2_Item*_request.md`, `perplexity/Phase2_Item*_response.md` (총 3개 세트)
+- [ ] **Research (Execution & Auto-Logging)**: 가설 검증 심층 리서치 수행 및 자동 로깅
+      : (활용도구) `util-research-runner/prompts/research_with_logging.md`
+      : (산출물) `perplexity/Phase2_Item*_request.md`, `perplexity/Phase2_Item*_response.md` (자동 생성)
 - [ ] **Research (Validation)**: 리서치 결과물 품질 및 분량 검증
       : (활용도구) `.agent/skills/util-research-runner/prompts/output_validator.md`
 - [ ] **Research (Storage)**: 리서치 결과물 저장
@@ -56,8 +56,10 @@
       : (활용도구) `strategy-hunter/prompts/2_fact_check.md`, (산출물) `09_verified_facts.md` (최소 50줄 이상)
 - [ ] **Ghost Deck v2**: 가설 수정 및 전략 종합
       : (활용도구) `strategy-hunter/prompts/3_synthesis.md`, (산출물) `10_ghost_deck_v2.md` (최소 120줄 이상)
-- [ ] **Content Expander**: 리서치 팩트 기반 내러티브 보강
+- [ ] **Content Expander (Optional)**: 리서치 팩트 기반 내러티브 보강
       : (활용도구) `util-workflow-engineer/prompts/content_expander.md` (데이터 밀도 3배 보강)
+      : **실행 조건**: `10_ghost_deck_v2.md` 분량이 180줄 미만일 경우에만 실행
+      : **충족 시**: ⏭️ 생략 (이미 충분히 깊이 있음)
 - [ ] **History Keeper**: 2단계 이력 기록
       : (활용도구) `util-history-keeper`, (산출물) `history.md`
 - [ ] **Workflow Audit**: 2단계 진단 수행
@@ -77,8 +79,10 @@
       : (활용도구) `strategy-redteamer/prompts/3_defense_logic.md`, (산출물) `14_debate_round3_synthesis.md` (최소 100줄 이상)
 - [ ] **Final Report**: 최종 전략 보고서 작성
       : (활용도구) `strategy-redteamer/prompts/4_final_polish.md`, (산출물) `15_FINAL_REPORT.md` (최소 200줄 이상)
-- [ ] **Content Expander**: 최종 보고서 심층 보강 (Deep-Dive)
+- [ ] **Content Expander (Conditional)**: 최종 보고서 심층 보강 (Deep-Dive)
       : (활용도구) `util-workflow-engineer/prompts/content_expander.md`, (산출물) `15_FINAL_REPORT_expanded.md` (논리 깊이 3배 확장)
+      : **실행 조건**: `15_FINAL_REPORT.md` 분량이 300줄 미만일 경우 실행
+      : **기본값**: 최종 보고서는 대부분 실행 권장 (경영진 보고용 Deep-Dive)
 - [ ] **History Keeper**: 3단계 이력 기록
       : (활용도구) `util-history-keeper`, (산출물) `history.md`
 - [ ] **Workflow Audit**: 3단계 진단 수행

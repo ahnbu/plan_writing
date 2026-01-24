@@ -22,4 +22,5 @@ tools: [read_file, write_file, run_command]
     - 사용법: `python scripts/audit_pptx.py --pptx_path "path/to/deck.pptx" --plan_path "path/to/plan.md"`
     - **목적**: 생성된 파일의 슬라이드 개수가 기획안과 일치하는지, 내용이 비어있지 않은지 검사하여 오류 시 재작업 플래그를 띄웁니다.
 
-5.  **📜 기록 보관 (Util 호출)**: `util-history-keeper` 스킬 사용하여 단계 기록
+5.  **📋 Task Progress Update (Mandatory)**: `task.md` 파일을 열어 Phase 4에서 완료한 모든 항목의 체크박스를 `[ ]` → `[✅]`로 변경하고, Phase 4 헤더를 `[ ]` → `[✅ Done]`으로 업데이트하십시오.
+6.  **📜 기록 보관 (Util 호출)**: `util-history-keeper` 스킬 사용하여 단계 기록

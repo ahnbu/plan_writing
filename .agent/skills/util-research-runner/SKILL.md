@@ -8,29 +8,34 @@ tools: [perplexity_ask, write_file]
 
 ## Role
 
-프로젝트 전반에 걸쳐 리서치를 전담 수행합니다.
+프로젝트 전반에 걸쳐 리서치를 전담 수행하며, 모든 Perplexity 검색 과정을 자동으로 로깅합니다.
 
 ## Usage
 
 다른 스킬에서 이 스킬을 호출할 때 다음을 입력으로 받습니다.
 
 - **Blueprint**: 조사할 질문 리스트와 검색 의도
+- **Output Folder**: 프로젝트 출력 폴더 경로
+- **Phase Name**: 현재 Phase (예: Phase1, Phase2)
 
-## Workflow
+## Workflow (Simplified with Auto-Logging)
 
 1.  **Read Blueprint**: 입력된 청사진 확인
-2.  **Execute Search**: `perplexity_ask` 툴을 사용하십시오.
-    - **Language Protocol (Mandatory)**:
-      - 쿼리(Query)는 고해상도 정보 확보를 위해 **영문(English)**으로 작성하십시오.
-      - 응답 요청 시 반드시 **"Respond in Korean"** 지시어를 추가하여 로그의 가독성을 확보하십시오.
-    - **Fragmented Search Policy (Mandatory)**:
-      - 여러 주제가 섞인 일괄 검색(Batch Search)을 엄격히 금지합니다.
-      - 청사진(`blueprint`)의 각 조사 항목별로 최소 1회 이상의 독립적인 `perplexity_ask` 호출을 수행하십시오.
-    - **Raw Logging Protocol (Mandatory)**:
-      1. 도구 응답 원문을 프로젝트 출력 폴더 내 임시 파일(`{output_path}/temp/raw_res.txt`)에 저장하십시오.
-      2. `scripts/log_mcp.py`를 실행하여 원문을 `{output_path}/perplexity/` 폴더에 아카이빙하십시오.
-      3. **절대 AI가 응답을 요약하거나 편집하여 로그 파일에 직접 쓰지 마십시오.**
-3.  **Report**: 검색 결과를 구조화하여 지정된 경로에 저장하십시오.
+2.  **Execute Research with Auto-Logging**:
+    - **프롬프트 실행**: `prompts/research_with_logging.md`
+    - **자동 수행 내용**:
+      - Perplexity 검색 (영문 쿼리, 한글 응답)
+      - `perplexity/` 폴더 자동 생성
+      - 각 Item별 요청/응답 자동 로깅
+    - **출력**: `perplexity/{Phase}_Item*_request.md`, `perplexity/{Phase}_Item*_response.md`
+3.  **Report**: 검색 결과를 구조화하여 지정된 경로에 저장
 4.  **Validation (Quality Gate)**: `prompts/output_validator.md` 실행
     - **Pass condition**: "Search Log Table" 및 "URL Sources" 포함 여부 확인
     - **If Fail**: 즉시 Step 3(Report)를 재수행하여 보고서 포맷을 수정 (User 승인 불필요)
+
+## Key Improvement
+
+**Before**: 수동 스크립트 실행 필요 (log_mcp.py)  
+**After**: 프롬프트가 자동으로 로깅 수행 ✅
+
+이제 별도의 로깅 단계나 스크립트 실행 없이, `research_with_logging.md` 프롬프트만 실행하면 모든 리서치와 로깅이 자동으로 완료됩니다.

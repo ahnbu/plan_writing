@@ -46,5 +46,6 @@ tools: [read_file, write_file, perplexity_ask, view_file]
     - 입력: `15_FINAL_REPORT.md`
     - 결과: **저장**: `15_FINAL_REPORT_expanded.md` (Deep-Dive Version)
 
-8.  **📜 기록 보관 (Util 호출)**: `util-history-keeper` 스킬 실행.
+8.  **📋 Task Progress Update (Mandatory)**: `task.md` 파일을 열어 Phase 3에서 완료한 모든 항목의 체크박스를 `[ ]` → `[✅]`로 변경하고, Phase 3 헤더를 `[ ]` → `[✅ Done]`으로 업데이트하십시오.
+9.  **📜 기록 보관 (Util 호출)**: `util-history-keeper` 스킬 실행.
     - **Target File**: `14_debate_round3_synthesis.md` 및 `15_FINAL_REPORT_expanded.md` (논쟁의 결론 및 최종 확장본 기록)

@@ -19,4 +19,5 @@ tools: [read_file, write_file, perplexity_ask]
     - 결과: Verified Facts List -> **저장**: `09_verified_facts.md`
 4.  **전략 종합**: `.agent/skills/strategy-hunter/prompts/3_synthesis.md` 실행
     - 결과: **저장**: `10_ghost_deck_v2.md`
-5.  **📜 기록 보관 (Util 호출)**: `util-history-keeper` 스킬 사용하여 단계 기록
+5.  **📋 Task Progress Update (Mandatory)**: `task.md` 파일을 열어 Phase 2에서 완료한 모든 항목의 체크박스를 `[ ]` → `[✅]`로 변경하고, Phase 2 헤더를 `[ ]` → `[✅ Done]`으로 업데이트하십시오.
+6.  **📜 기록 보관 (Util 호출)**: `util-history-keeper` 스킬 사용하여 단계 기록
