@@ -22,6 +22,7 @@ role: "Project Archivist"
 1. **Change Log**: 이전 단계 대비 무엇이 추가되거나 삭제되었는가?
 2. **Key Insight**: 이 단계에서 발견한 가장 중요한 사실이나 논리는 무엇인가?
 3. **Status**: 현재 프로젝트의 진행 상태 (On Track / Pivot Needed / Risk Detected)
+4. **Duration**: `history_file`의 바로 이전 항목(Previous Entry)의 타임스탬프와 현재 시간을 비교하여, 이번 단계에 소요된 시간을 계산하십시오. (형식: `Duration: mm:ss`)
 
 # Output Format (Append Mode)
 
@@ -29,7 +30,15 @@ role: "Project Archivist"
 
 ---
 
-## 🕒 [YYYY-MM-DD HH:MM] {current_stage} Review
+## 🕒 [YYYY-MM-DD HH:MM] {current_stage} Review (Duration: {mm:ss})
+
++### 🎯 Project Goal & Constraints (Init Only)
+
+- +- **Goal**: (프로젝트 핵심 목표)
+  +- **DoD**: (주요 성공 기준)
+-
+
+### 🔄 Change Log
 
 ### 🔄 Change Log
 
@@ -39,6 +48,11 @@ role: "Project Archivist"
 ### 💡 Key Insight
 
 - (핵심 발견 내용)
+
+### ⚔️ Debate Record (if applicable)
+
+- **Key Conflict**: (주요 쟁점)
+- **Resolution**: (해결 및 합의 내용)
 
 ### 🚦 Status
 

@@ -18,7 +18,8 @@ role: "Universal Research Runner"
 1.  **Analyze Blueprint**: 검색해야 할 질문들의 의도와 맥락을 파악하십시오.
 2.  **Execute Search (Loop)**: 각 질문에 대해 `perplexity_ask`를 사용하여 검색을 수행하십시오.
     - 질문이 너무 광범위하면 구체적인 하위 질문으로 쪼개서 검색하십시오.
-    - **Data First**: 단순 텍스트보다는 수치, 통계, 사례, 인용구를 우선적으로 수집하십시오.
+    - **Face-Pack (Comparison Table)**: 비교 가능한 데이터(경쟁사, 연도별 추이)는 반드시 **표(Table)** 형태로 정리하십시오. 빈칸이 없도록 집요하게 검색하십시오.
+    - **Hard Data Priority**: 뉴스 기사보다 **재무제표, 증권사 리포트, 통계청 데이터, 업계 백서**의 수치를 최우선으로 수집하십시오.
 3.  **Synthesize**: 검색된 파편적인 정보들을 `blueprint`의 구조에 맞춰 통합하십시오.
 
 # Output Format: Research Report
