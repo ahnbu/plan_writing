@@ -4,4 +4,5 @@
 
 | 일시 | 유형 | 범위 | 변경내용 (목적 포함) |
 |---|---|---|---|
-| YYYY-MM-DD HH:mm | feat/fix/refactor/docs/chore/other | area-or-folder | 변경 요약 — 변경 이유·목적 |
+| 2026-03-19 | docs | README, docs | README.md, docs/mbb_sop.md 업데이트 — 프로젝트 문서 개선 |
+| 2026-03-19 | chore | .gitignore | _handoff/, 작업중*.txt 패턴 추가 — 불필요 파일 추적 방지 |

@@ -10,17 +10,130 @@
 
 ## 🏗️ System Architecture (The "7-Skill" Module)
 
-이 시스템은 단일 LLM이 아닌, 각기 다른 전문성을 가진 **7개의 독립 스킬(Skill)**이 유기적으로 협업하는 **Multi-Agent** 구조입니다.
+이 시스템은 단일 LLM이 아닌, 각기 다른 전문성을 가진 **7개의 독립 스킬(Skill)**이 유기적으로 협업하는 **Multi-Agent** 구조입니다. Strategy Master가 전체 오케스트레이션을 담당하며, 하위 에이전트들이 각자의 역할을 수행합니다.
 
-| Module                   | Role                   | Description                                                                                                  |
-| :----------------------- | :--------------------- | :----------------------------------------------------------------------------------------------------------- |
-| **👑 Strategy Master**   | **PM & Orchestrator**  | 전체 프로젝트를 총괄하며, 각 단계의 산출물을 QA(품질 검수)하고 **TDD 방식**으로 성공 기준(DoD)을 관리합니다. |
-| **🧠 Framer**            | **Structural Thinker** | 모호한 주제를 MECE하게 구조화하고, 데이터로 검증 가능한 **초기 가설(Ghost Deck)**을 설계합니다.              |
-| **🔎 Hunter**            | **Deep Researcher**    | 시장 데이터를 수집하고, `Recursive Research Loop`를 통해 가설을 끝까지 검증(Fact Check)합니다.               |
-| **🛡️ Red Teamer**        | **Debate Club**        | **"3-Round Recursive Debate"**를 통해 자신의 전략을 스스로 공격하고 방어하며 논리를 극한으로 연마합니다.     |
-| **🎨 PT Planner**        | **Storyteller**        | 최종 논리를 설득력 있는 **내러티브(Storyline)**와 **슬라이드 설계도**로 변환합니다.                          |
-| **🏃 Research Runner**   | **Utility**            | 모든 스킬이 공통으로 사용하는 '검색 엔진'으로, **재무제표/통계** 등 Hard Data 수집에 특화되어 있습니다.      |
-| **⚙️ Workflow Engineer** | **Meta-Optimizer**     | 프로젝트 종료 후 로그를 분석하여, 병목 구간을 찾고 **스스로 스킬을 업그레이드(Prompt Fix)**합니다.           |
+### Architecture Diagram
+
+```mermaid
+graph TD
+    subgraph "Orchestration & Quality"
+        Master["👑 Strategy Master<br/>(PM & QA)"]
+        Engineer["⚙️ Workflow Engineer<br/>(Self-Optimization)"]
+    end
+
+    subgraph "Strategic Core Process"
+        Framer["🧠 Framer<br/>(Structuring)"]
+        Hunter["🔎 Hunter<br/>(Research)"]
+        RedTeamer["🛡️ Red Teamer<br/>(Debate)"]
+        PTPlanner["🎨 PT Planner<br/>(Visualization)"]
+    end
+
+    subgraph "Shared Utilities"
+        Runner["🏃 Research Runner<br/>(Search Engine)"]
+        History["📜 History Keeper<br/>(Logging)"]
+    end
+
+    %% Relations
+    Master --> Framer
+    Master --> Hunter
+    Master --> RedTeamer
+    Master --> PTPlanner
+
+    Framer -.-> Hunter
+    Hunter -.-> RedTeamer
+    RedTeamer -.-> PTPlanner
+
+    Hunter --- Runner
+    Framer --- Runner
+
+    Master --- Engineer
+    all-agents --- History
+```
+
+### Module Descriptions
+
+| Module                   | Role                   | Description                                                                                              |
+| :----------------------- | :--------------------- | :------------------------------------------------------------------------------------------------------- |
+| **👑 Strategy Master**   | **PM & Orchestrator**  | 전체 프로젝트를 총괄하며, 각 단계의 산출물을 QA하고 **TDD 방식**으로 성공 기준(DoD)을 관리합니다.        |
+| **🧠 Framer**            | **Structural Thinker** | 모호한 주제를 MECE하게 구조화하고, 데이터로 검증 가능한 **초기 가설(Ghost Deck)**을 설계합니다.          |
+| **🔎 Hunter**            | **Deep Researcher**    | 시장 데이터를 수집하고, `Recursive Research Loop`를 통해 가설을 끝까지 검증(Fact Check)합니다.           |
+| **🛡️ Red Teamer**        | **Debate Club**        | **"3-Round Recursive Debate"**를 통해 자신의 전략을 스스로 공격하고 방어하며 논리를 극한으로 연마합니다. |
+| **🎨 PT Planner**        | **Storyteller**        | 최종 논리를 설득력 있는 **내러티브(Storyline)**와 **슬라이드 설계도**로 변환합니다.                      |
+| **🏃 Research Runner**   | **Utility**            | 모든 스킬이 공통으로 사용하는 '검색 엔진'으로, **재무제표/통계** 등 Hard Data 수집에 특화되어 있습니다.  |
+| **⚙️ Workflow Engineer** | **Meta-Optimizer**     | 프로젝트 종료 후 로그를 분석하여, 병목 구간을 찾고 **스스로 스킬을 업그레이드(Prompt Fix)**합니다.       |
+
+---
+
+## 🔄 Project Workflow (The Logic Factory)
+
+Strategy Master는 'Raw Data'를 'Executive Presentation'으로 변환하기 위해 4단계의 선형적 프로세스를 따르되, 필요시 순환적(Recursive) 루프를 돕니다.
+
+### Workflow Sequence
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant M as Strategy Master
+    participant F as Framer
+    participant H as Hunter
+    participant R as Red Teamer
+    participant P as PT Planner
+
+    U->>M: 프로젝트 주제 및 요구사항 전달
+    M->>U: 00_project_charter (성공 기준 합의)
+
+    activate M
+    M->>F: [Phase 1] 문제 구조화 및 가설 수립
+    F-->>M: 06_ghost_deck_v1 (초기 가설)
+
+    M->>H: [Phase 2] 가설 검증 및 팩트 체크
+    H-->>M: 10_research_report (데이터 기반 검증)
+
+    M->>R: [Phase 3] 논리 검증 (3-Round Debate)
+    Note over R: Red Team (공격) vs Blue Team (방어)
+    R-->>M: 12_final_logic (강화된 전략)
+
+    M->>P: [Phase 4] 최종 시각화 및 내러티브
+    P-->>M: 15_FINAL_REPORT & 18_Strategy_Deck
+    deactivate M
+
+    M->>U: 최종 결과물 보고 및 프로젝트 종료
+```
+
+### Detailed Phase Breakdown
+
+#### **[Phase 1] 구조화 (The Framer)**
+
+> _"문제의 해체와 가설 수립"_
+
+- **Research Design**: 3C, PESTEL 등 상황에 맞는 프레임워크 선정
+- **Issue Tree**: MECE 원칙에 입각한 하위 과제 및 실행 질문 분해
+- **Output**: Ghost Deck v1.0 (가설 기반 초안)
+
+#### **[Phase 2] 검증 (The Hunter)**
+
+> _"팩트 기반의 가설 검증"_
+
+- **Fact Finding**: Perplexity 연동을 통한 실시간 데이터 및 통계 수집
+- **Verification Loop**: 수집된 증거로 가설을 Confirm/Refute/Pivot 판정
+- **Output**: Ghost Deck v2.0 (사실 기반 수정안)
+
+#### **[Phase 3] 방어 및 연마 (The Red Teamer)**
+
+> _"비판과 창의의 변증법"_
+
+- **Recursive Debate**: 공격(Red) vs 방어(Blue)의 3라운드 치열한 논쟁
+- **Defense Logic**: 비판에 대한 대응 논리 구축 및 전략 고도화
+- **Output**: 최종 전략 보고서 (Final Strategy Report)
+
+#### **[Phase 4] 시각화 기획 (PT Planner)**
+
+> _"전달력 극대화"_
+
+- **Narrative Design**: Hook-Problem-Analysis-Solution-Action 기반의 기승전결 (Storyline)
+- **Slide Mapping**: 논리 흐름을 시각적으로 최적화하는 장표 설계
+- **Output**: PPT 슬라이드 설계도 (Presentation Blueprint)
 
 ---
 

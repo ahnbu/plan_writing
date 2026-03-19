@@ -44,7 +44,6 @@ output_rules:
 - **Situation (S):** 논란의 여지가 없는 현재의 사실/배경
 - **Complication (C):** S에서 발생한 문제, 위협, 또는 변화 (Why now?)
 - **Resolution (R):** C를 해결하기 위해 우리가 답해야 할 **핵심 질문(Key Question)**
-
 - **Output:** `Problem Statement Worksheet`
 
 ### `prompts/01_framer/3_issue_tree.md` (Structure & Prioritize)
@@ -67,7 +66,6 @@ output_rules:
 - **Slide Title:** 해당 장표가 말하고자 하는 메시지 (가설)
 - **Placeholder:** 들어갈 데이터의 형태 (예: "경쟁사 A와 B의 매출 추이 그래프")
 - **Tagging:** 팩트 확인이 필요한 모든 문장에 `[VERIFY: 검증할 구체적 내용]` 태그를 붙이십시오.
-
 - **Output:** `Ghost Deck v1.0`
 
 ---
@@ -84,7 +82,6 @@ output_rules:
 - **Source:** 어디서 찾을 것인가? (Statista, 10-K Reports, News, Tech Blogs)
 - **Query:** Perplexity에게 던질 최적의 질문은? (수치 중심, 비교 중심)
 - **Killer Fact:** 이 가설을 입증하기 위해 찾아야 할 단 하나의 숫자는 무엇인가?
-
 - **Output:** `Research Action Plan (JSON)`
 
 ### `prompts/02_hunter/2_fact_check.md` (Analyze)
@@ -95,7 +92,6 @@ output_rules:
 - **Support:** 데이터가 가설을 지지함 -> 데이터 인용
 - **Refute:** 데이터가 가설과 반대됨 -> **가설 수정(Pivot)** 및 수정된 근거 제시
 - **Nuance:** 맞긴 한데 조건이 붙음 -> 조건 명시
-
 - **Output:** `Verified Facts List`
 
 ### `prompts/02_hunter/3_synthesis.md` (Synthesize)
@@ -105,7 +101,6 @@ output_rules:
 - **Task:** 단순한 '데이터 주입'을 넘어 **Synthesis(종합)**를 수행하십시오.
 - 흩어진 팩트들을 연결하여 **"So What? (그래서 이것이 전략에 어떤 의미인가?)"**를 도출하십시오.
 - Ghost Deck의 내용을 팩트 기반으로 다시 쓰고(Rewrite), 시사점을 강화하십시오.
-
 - **Output:** `Ghost Deck v2.0 (Fact-based)`
 
 ---
@@ -120,7 +115,6 @@ output_rules:
 - **Input:** Ghost Deck v2.0
 - **Task:** 당신은 의심 많고 냉철한 투자 결정권자입니다. 이 보고서를 승인하지 않을 **치명적인 이유 3가지만** 꼽으십시오.
 - _Focus:_ ROI 불확실성, 숨겨진 리스크, 실행 가능성(Feasibility), 경쟁사의 반격.
-
 - **Output:** `Critical Risk Assessment`
 
 ### `prompts/03_red_teamer/2_defense_logic.md` (Refine)
@@ -130,7 +124,6 @@ output_rules:
 - **Task:** 지적된 리스크를 방어하십시오.
 - **Logic:** 논리적으로 반박하거나, 리스크 헷징(Risk Hedging) 전략을 추가하십시오.
 - **Data:** 방어에 필요한 데이터가 부족하다면 **"추가 리서치 쿼리"**를 생성하여 즉시 Perplexity MCP를 호출하십시오.
-
 - **Output:** `Defensed Logic & Updates`
 
 ### `prompts/03_red_teamer/3_final_polish.md` (Communicate)
@@ -141,7 +134,6 @@ output_rules:
 - **Executive Summary:** 전체 내용을 1페이지로 요약 (S-C-R 구조).
 - **Action Title:** 모든 슬라이드 제목은 '완결된 메시지 문장'으로 교체.
 - **Tone:** 비즈니스 프로페셔널 톤으로 문장 다듬기.
-
 - **Output:** `Final Strategy Report (vFinal)`
 
 ---
